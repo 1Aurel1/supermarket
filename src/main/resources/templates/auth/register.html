@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
+<head>
+    <title>Register</title>
+</head>
+<body>
+
+<!--Content-->
+<section class="mt-5" layout:fragment="content">
+    <div class="row pt-5 justify-content-center">
+
+        <div class="col-lg-7">
+            <form th:action="@{register}" th:object="${user}" method="post" id="userForm"
+                  data-parsley-validate="">
+                <div class="form-group">
+                    <label>
+                        Username *
+                        <input th:field="*{username}" type="text" class="form-control"
+                               placeholder="Enter your username..." aria-describedby="usernameHelper" required="">
+                    </label>
+                    <small id="usernameHelper" class="text-muted">How should we call you?</small>
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        Password *
+                        <input th:field="*{password}" type="password" autocomplete="on" class="form-control"
+                               placeholder="Enter your desired password..." required="">
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password">Confirm password</label>
+                    <input type="password" class="form-control" autocomplete="on" name="confirm_password"
+                           placeholder="Confirm Password" id="confirm_password" data-parsley-equalto="#password"
+                           required>
+                </div>
+
+                <div class="btn-group" role="group" aria-label="">
+                    <button type="submit" value="Submit" class="btn btn-primary">
+                        Register
+                    </button>
+                    <a class="btn btn-default" th:href="@{login}" role="button">Back to login</a>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<!--TODO te vendosen te footeri-->
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+
+</body>
+
+</html>

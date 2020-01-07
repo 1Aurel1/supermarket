@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+  <head>
+
+    <title>Test</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
+
+  </head>
+
+  <body>
+
+  <section id="header" layout:insert="shared/navbar :: navbar"></section>
+
+  <section id="content" layout:fragment="content"></section>
+
+<!--  <section id="footer" layout:insert="shared/footer"></section>-->
+
+<!--  <section id="scripts" layout:fragment="scripts"></section>-->
+
+  </body>
+
+</html>
