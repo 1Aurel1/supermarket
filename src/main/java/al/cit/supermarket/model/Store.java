@@ -26,4 +26,7 @@ public class Store extends AbstractAuditingEntity {
             inverseJoinColumns = @JoinColumn(name = "store_id", referencedColumnName = "id")
     )
     private Set<User> users;
+
+    @OneToMany(mappedBy = "store")
+    private Set<Product> products;
 }

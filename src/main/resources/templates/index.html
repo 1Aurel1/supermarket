@@ -1,15 +1,27 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hello</title>
+    <title layout:fragment="title">Hello - Test</title>
 </head>
 <body>
 
-<h1>Hello World Dardan</h1>
+<!--Content-->
+<section class="mt-5" layout:fragment="content">
+
+    <h1>Hello World Xhava</h1>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+
+</section>
+
+<!--Page specific scripts-->
+<section layout:fragment="scripts">
+
+</section>
 
 </body>
 </html>

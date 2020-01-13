@@ -3,15 +3,15 @@ package al.cit.supermarket.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
+@Table(
+        name = "products"
+)
 @EqualsAndHashCode(callSuper = true)
-public class Products extends AbstractAuditingEntity {
+public class Product extends AbstractAuditingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,4 +22,12 @@ public class Products extends AbstractAuditingEntity {
     private String description;
 
     private double price;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 }

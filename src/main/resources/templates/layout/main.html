@@ -3,7 +3,7 @@
 
   <head>
 
-    <title>Test</title>
+    <title layout:fragment="title"></title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
 
   </head>
@@ -14,9 +14,9 @@
 
   <section id="content" layout:fragment="content"></section>
 
-<!--  <section id="footer" layout:insert="shared/footer"></section>-->
+  <section id="footer" layout:insert="../shared/footer"></section>
 
-<!--  <section id="scripts" layout:fragment="scripts"></section>-->
+  <section id="scripts" layout:fragment="scripts"></section>
 
   </body>
 

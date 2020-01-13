@@ -34,7 +34,6 @@ public class AuthController {
         return "auth/register";
     }
 
-
     @PostMapping("/register")
     public String register(@Valid @ModelAttribute("user") UserRegistrationRequest request) {
 

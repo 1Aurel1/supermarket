@@ -28,6 +28,9 @@ public class Category extends AbstractAuditingEntity {
     @OneToMany(mappedBy = "parent")
     private Set<Category> subCategory;
 
+    @OneToMany(mappedBy = "category")
+    private Set<Product> products;
+
     public Category() {
 
         this.subCategory = new HashSet<>();
