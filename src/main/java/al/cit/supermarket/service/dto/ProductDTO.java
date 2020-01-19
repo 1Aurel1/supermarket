@@ -11,6 +11,8 @@ public class ProductDTO {
     private String description;
     private double price;
 
+    public ProductDTO(){}
+
     public ProductDTO(Product product){
 
         this.id = product.getId();

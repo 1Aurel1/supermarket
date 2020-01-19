@@ -10,6 +10,8 @@ public class StoreDTO {
     private String name;
     private String location;
 
+    public StoreDTO(){}
+
     public StoreDTO(Store store){
         this.id = store.getId();
         this.name = store.getName();
