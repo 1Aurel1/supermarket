@@ -29,10 +29,10 @@ public class SuccessfulAuthenticationHandler implements AuthenticationSuccessHan
 
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
-        if (roles.contains("ROLE_ADMIN")) {
+        if (roles.contains("ADMIN")) {
 
             response.sendRedirect(servletContext.getContextPath() + "/admin/dashboard");
-        } else if (roles.contains("ROLE_USER")) {
+        } else if (roles.contains("USER")) {
 
             response.sendRedirect(servletContext.getContextPath() + "/");
         } else {
