@@ -1,5 +1,6 @@
 package al.cit.supermarket.model;
 
+import al.cit.supermarket.model.file.ImageFile;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -22,6 +23,10 @@ public class Product extends AbstractAuditingEntity {
     private String description;
 
     private double price;
+
+    @OneToOne
+    @JoinColumn(name = "image_id")
+    private ImageFile image;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

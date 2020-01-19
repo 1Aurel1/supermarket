@@ -28,7 +28,7 @@ public class AuthService {
 
         User user = userMapper.userRegistrationRequestToUser(request);
 
-        user.getAuthorities().add(authorityRepository.findByName(AuthorityName.USER));
+        user.addAuthority(authorityRepository.findByName(AuthorityName.USER));
 
         userRepository.save(user);
     }
