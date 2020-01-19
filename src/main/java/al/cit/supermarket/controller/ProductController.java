@@ -1,15 +1,11 @@
 package al.cit.supermarket.controller;
 
-import al.cit.supermarket.component.MySessionAttributes;
 import al.cit.supermarket.service.ProductService;
 import al.cit.supermarket.service.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,12 +13,11 @@ import java.util.List;
 public class ProductController {
 
     private ProductService productService;
-    private MySessionAttributes mySessionAttributes;
 
     @Autowired
-    public ProductController(ProductService productService, MySessionAttributes mySessionAttributes) {
+    public ProductController(ProductService productService) {
+
         this.productService = productService;
-        this.mySessionAttributes = mySessionAttributes;
     }
 
     @GetMapping
@@ -31,7 +26,7 @@ public class ProductController {
         ){
 
         List<ProductDTO> products = productService.getStoreProducts();
-        model.addAttribute("");
+        model.addAttribute("products", products);
         return "/products/index";
     }
 
@@ -44,9 +39,19 @@ public class ProductController {
         return "products/show";
     }
 
-//    @PostMapping
-//    public String postProduct(@ModelAttribute("p")){
-//
-//        return "redirect:/" + ;
-//    }
+    @PostMapping
+    public String postProduct(@ModelAttribute("newProduct") ProductDTO product){
+
+        int id = productService.createProduct(product);
+        return String.format("redirect:/products/%d", id);
+    }
+
+    @PutMapping
+    public String putProduct(
+            @ModelAttribute("newProduct") ProductDTO updatedProduct
+            ){
+
+        int id = productService.updateProduct(updatedProduct);
+        return String.format("redirect:/products/%d", id);
+    }
 }
