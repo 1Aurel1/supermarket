@@ -1,6 +1,5 @@
 package al.cit.supermarket.controller;
 
-import al.cit.supermarket.model.Product;
 import al.cit.supermarket.service.dto.ProductDTO;
 import al.cit.supermarket.service.dto.StoreDTO;
 import org.springframework.stereotype.Controller;
