@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
         proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class MySessionAttributes {
 
+    @Autowired
     private HttpSession httpSession;
 
     private StoreDTO store;
@@ -25,7 +26,7 @@ public class MySessionAttributes {
     public void setStore(StoreDTO store) {
 
         this.store = store;
-        httpSession.setAttribute("currentStore", store);
+        httpSession.setAttribute("currentStore", this.store);
     }
 
     public void cleanStore() {

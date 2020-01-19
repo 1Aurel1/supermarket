@@ -1,5 +1,6 @@
 package al.cit.supermarket.config;
 
+import al.cit.supermarket.component.SuccessfulAuthenticationHandler;
 import al.cit.supermarket.security.CustomUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,17 +25,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserDetailService userDetailService;
 
+    @Autowired
+    private SuccessfulAuthenticationHandler successfulAuthenticationHandler;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-//    @Bean
-//    public JdbcUserDetailsManager jdbcUserDetailsManager() throws Exception {
-//        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager();
-//        jdbcUserDetailsManager.setDataSource(dataSource);
-//        return jdbcUserDetailsManager;
-//    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -54,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
+                .successHandler(successfulAuthenticationHandler)
                 .permitAll()
                 .and()
                 .rememberMe()
@@ -63,8 +60,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .deleteCookies("JSESSIONID", "remember-me")
                 .permitAll()
-
-
         ;
     }
 

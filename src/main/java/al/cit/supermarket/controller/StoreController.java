@@ -52,10 +52,10 @@ public class StoreController {
         mySessionAttributes.setStore(storeService.getStore(id));
 
         Set<String> authorities = AuthorityUtils.authorityListToSet(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
-        if (authorities.contains(AuthorityName.USER.toString()))
+        if (authorities.contains(AuthorityName.ADMIN.toString()))
             return "redirect:/admin/dashboard";
 
-        return null;
+        return "redirect:/admin/dashboard";
     }
 
     @PostMapping
