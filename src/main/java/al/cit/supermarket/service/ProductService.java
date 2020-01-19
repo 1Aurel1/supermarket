@@ -1,5 +1,6 @@
 package al.cit.supermarket.service;
 
+import al.cit.supermarket.component.MySessionAttributes;
 import al.cit.supermarket.model.Product;
 import al.cit.supermarket.repository.ProductRepository;
 import al.cit.supermarket.service.dto.ProductDTO;
@@ -13,13 +14,14 @@ import java.util.List;
 public class ProductService {
 
     private ProductRepository productRepository;
+    private MySessionAttributes attributes;
 
     @Autowired
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
-    public List<ProductDTO> getStoreProducts(int id) {
+    public List<ProductDTO> getStoreProducts() {
 
         List<ProductDTO> products = new ArrayList<>();
 //
@@ -31,4 +33,9 @@ public class ProductService {
 
         return products;
     }
+
+//    public Object getStoreProduct(int id) {
+//
+//
+//    }
 }
