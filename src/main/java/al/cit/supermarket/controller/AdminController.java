@@ -24,6 +24,6 @@ public class AdminController {
         attributes.put("newProduct", new ProductDTO());
 
         model.addAllAttributes(attributes);
-        return null;
+        return "admin/dashboard`";
     }
 }
