@@ -34,8 +34,8 @@ public class ProductService {
         return products;
     }
 
-//    public Object getStoreProduct(int id) {
-//
-//
-//    }
+    public Object getStoreProduct(int id) {
+
+        return 0;
+    }
 }
