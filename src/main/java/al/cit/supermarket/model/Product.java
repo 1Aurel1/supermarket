@@ -3,6 +3,7 @@ package al.cit.supermarket.model;
 import al.cit.supermarket.model.file.ImageFile;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 
@@ -22,10 +23,12 @@ public class Product extends AbstractAuditingEntity {
 
     private String description;
 
+    private int quantity;
+
     private double price;
 
-    @OneToOne
-    @JoinColumn(name = "image_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
     private ImageFile image;
 
     @ManyToOne

@@ -4,6 +4,7 @@ import al.cit.supermarket.component.MySessionAttributes;
 import al.cit.supermarket.exeption.ResourceNotFoundException;
 import al.cit.supermarket.model.Product;
 import al.cit.supermarket.repository.ProductRepository;
+import al.cit.supermarket.service.dto.NewProductDTO;
 import al.cit.supermarket.service.dto.ProductDTO;
 import al.cit.supermarket.service.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,10 +50,15 @@ public class ProductService {
         return new ProductDTO(product);
     }
 
-    public int createProduct(ProductDTO dto) {
+    public int createProduct(NewProductDTO dto) {
 
-        Product product = productMapper.productDtoToProduct(dto);
-        product = productRepository.saveAndFlush(product);
+        System.out.println(dto);
+
+        Product product = productMapper.newProductDtoToProduct(dto);
+
+
+
+        product = productRepository.save(product);
 
         return product.getId();
     }
@@ -60,6 +66,6 @@ public class ProductService {
     public int updateProduct(ProductDTO dto) {
 
         Product product = productMapper.productDtoToProductForPatch(dto);
-        return productRepository.saveAndFlush(product).getId();
+        return productRepository.save(product).getId();
     }
 }

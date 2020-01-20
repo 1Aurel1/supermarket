@@ -2,6 +2,7 @@ package al.cit.supermarket.controller;
 
 import al.cit.supermarket.service.ProductService;
 import al.cit.supermarket.service.StoreService;
+import al.cit.supermarket.service.dto.NewProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +46,8 @@ public class AdminController {
     public String getProducts(Model model){
 
         model.addAttribute("products", productService.getStoreProducts());
+        model.addAttribute("newProduct", new NewProductDTO());
 
-        return "products/index";
+        return "admin/products";
     }
 }
