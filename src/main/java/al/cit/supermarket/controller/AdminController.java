@@ -42,7 +42,7 @@ public class AdminController {
     }
 
     @GetMapping("/products")
-    private String getProducts(Model model){
+    public String getProducts(Model model){
 
         model.addAttribute("products", productService.getStoreProducts());
 

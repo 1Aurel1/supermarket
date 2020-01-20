@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
-</body>
+    <head>
+
+        <title layout:fragment="title">Admin Dashboard</title>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,500i,700,700i&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="resources/style.css">
+
+
+    </head>
+
+    <body>
+
+        <section id="header" layout:insert="shared/navbar :: navbar"></section>
+
+        <section id="content" layout:fragment="content"></section>
+
+        <section id="footer" layout:insert="shared/footer"></section>
+
+        <section id="scripts" layout:fragment="scripts"></section>
+
+    </body>
+
 </html>

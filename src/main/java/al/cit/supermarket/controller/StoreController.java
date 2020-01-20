@@ -43,6 +43,12 @@ public class StoreController {
         return "stores/show";
     }
 
+    @GetMapping("/settings")
+    public String getSettings(){
+
+        return "stores/settings";
+    }
+
     @GetMapping("/open/{id}")
     @PreAuthorize("hasAnyAuthority('ADMIN')")
     public String openStore(
