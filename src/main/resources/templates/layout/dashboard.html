@@ -3,23 +3,163 @@
     <head>
 
         <title layout:fragment="title">Admin Dashboard</title>
-        <link rel="stylesheet" th:href="@{~/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" th:href="@{~/resources/style-dashboard.css}">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,500,500i,700,700i&display=swap" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="resources/style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
     </head>
 
     <body>
+        <div class="page-wrapper">
+            <div class="sidebar-wrapper open">
+                <div class="sidebar-content-wrapper">
+                    <div class="account-wrapper">
+                        <div class="account-logo-wrapper">
+                            <img  th:src="@{~/resources/purple-store-design-color-geometric-260nw-1130146721.webp}">
+                        </div>
+                        <div class="account-name-wrapper" th:text="${session.selectedStore != null} ? ${session.selectedStore.name}" >
 
-        <section id="header" layout:insert="shared/navbar :: navbar"></section>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="file:///home/nmc/Desktop/dashbord-main.html">
+                                <div class="item-icon">
+                                    <svg height="100%" width="100%" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.45 7L14 5.551V2c0-.55-.45-1-1-1h-1c-.55 0-1 .45-1 1v.553L9 .555C8.727.297 8.477 0 8 0s-.727.297-1 .555L.55 7C.238 7.325 0 7.562 0 8c0 .563.432 1 1 1h1v6c0 .55.45 1 1 1h3v-5c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v5h3c.55 0 1-.45 1-1V9h1c.568 0 1-.437 1-1 0-.438-.238-.675-.55-1z"/>
+                                    </svg>
+                                </div>
+                                <div class="item-text">Dashbord</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="file:///home/nmc/Desktop/dashbord-users.html">
+                                <div class="item-icon">
+                                    <svg height="100%" width="100%" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.45 7L14 5.551V2c0-.55-.45-1-1-1h-1c-.55 0-1 .45-1 1v.553L9 .555C8.727.297 8.477 0 8 0s-.727.297-1 .555L.55 7C.238 7.325 0 7.562 0 8c0 .563.432 1 1 1h1v6c0 .55.45 1 1 1h3v-5c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v5h3c.55 0 1-.45 1-1V9h1c.568 0 1-.437 1-1 0-.438-.238-.675-.55-1z"/>
+                                    </svg>
+                                </div>
+                                <div class="item-text">Users</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a th:href="@{~/admin/products}">
+                                <div class="item-icon">
+                                    <svg height="100%" width="100%" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.45 7L14 5.551V2c0-.55-.45-1-1-1h-1c-.55 0-1 .45-1 1v.553L9 .555C8.727.297 8.477 0 8 0s-.727.297-1 .555L.55 7C.238 7.325 0 7.562 0 8c0 .563.432 1 1 1h1v6c0 .55.45 1 1 1h3v-5c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v5h3c.55 0 1-.45 1-1V9h1c.568 0 1-.437 1-1 0-.438-.238-.675-.55-1z"/>
+                                    </svg>
+                                </div>
+                                <div class="item-text">Products</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="item-icon">
+                                    <svg height="100%" width="100%" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.45 7L14 5.551V2c0-.55-.45-1-1-1h-1c-.55 0-1 .45-1 1v.553L9 .555C8.727.297 8.477 0 8 0s-.727.297-1 .555L.55 7C.238 7.325 0 7.562 0 8c0 .563.432 1 1 1h1v6c0 .55.45 1 1 1h3v-5c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v5h3c.55 0 1-.45 1-1V9h1c.568 0 1-.437 1-1 0-.438-.238-.675-.55-1z"/>
+                                    </svg>
+                                </div>
+                                <div class="item-text">Orders</div>
+                            </a>
+                        </li>
+                        <li class="has-subnav">
+                            <a href="javascript:void(0)">
+                                <div class="item-icon">
+                                    <svg height="100%" width="100%" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.45 7L14 5.551V2c0-.55-.45-1-1-1h-1c-.55 0-1 .45-1 1v.553L9 .555C8.727.297 8.477 0 8 0s-.727.297-1 .555L.55 7C.238 7.325 0 7.562 0 8c0 .563.432 1 1 1h1v6c0 .55.45 1 1 1h3v-5c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v5h3c.55 0 1-.45 1-1V9h1c.568 0 1-.437 1-1 0-.438-.238-.675-.55-1z"/>
+                                    </svg>
+                                </div>
+                                <div class="item-text">Menu Item</div>
+                            </a>
+                            <!-- subnav -->
+                            <ul>
+                                <li>
+                                    <a href="#">SubMenu item</a>
+                                </li>
+                                <li>
+                                    <a href="#">SubMenu item</a>
+                                </li>
+                                <li>
+                                    <a href="#">SubMenu item 3</a>
+                                </li>
+                                <li>
+                                    <a href="#">SubMenu item 4</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="item-icon">
+                                    <svg height="100%" width="100%" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15.45 7L14 5.551V2c0-.55-.45-1-1-1h-1c-.55 0-1 .45-1 1v.553L9 .555C8.727.297 8.477 0 8 0s-.727.297-1 .555L.55 7C.238 7.325 0 7.562 0 8c0 .563.432 1 1 1h1v6c0 .55.45 1 1 1h3v-5c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v5h3c.55 0 1-.45 1-1V9h1c.568 0 1-.437 1-1 0-.438-.238-.675-.55-1z"/>
+                                    </svg>
+                                </div>
+                                <div class="item-text">Menu item 5</div>
+                            </a>
+                        </li>
 
-        <section id="content" layout:fragment="content"></section>
+                    </ul>
+                </div>
+                <div class="sidebar-button-wrapper">
+                    <a href="#">
+                        <div class="icon-wrapper">
+                            <svg class="icon" height="100%" width="100%" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                                <title>Log off</title>
 
-        <section id="footer" layout:insert="shared/footer"></section>
+                                <path d="M802.152 143.682c31.236 22.212 59.004 47.379 83.297 75.486 24.297 28.116 45.12 58.481 62.472 91.105 17.356 32.624 30.543 67.159 39.569 103.6 9.023 36.442 13.533 73.403 13.533 110.887 0 64.556-12.32 125.116-36.96 181.69-24.643 56.57-57.963 105.854-99.956 147.847-41.994 41.998-91.278 75.313-147.851 99.955-56.57 24.642-117.134 36.966-181.684 36.966-63.86 0-124.08-12.324-180.649-36.966-56.575-24.642-106.032-57.957-148.37-99.955-42.344-41.993-75.662-91.277-99.956-147.846C81.3 649.876 69.155 589.315 69.155 524.76c0-36.788 4.337-72.884 13.016-108.283 8.678-35.4 20.996-69.065 36.96-100.999 15.969-31.926 35.75-61.774 59.35-89.537 23.6-27.768 49.976-52.757 79.133-74.969 15.272-11.107 31.755-15.271 49.456-12.497 17.697 2.782 32.1 11.455 43.21 26.03 11.108 14.583 15.27 30.891 12.496 48.94-2.781 18.047-11.454 32.622-26.03 43.732-43.732 31.927-77.225 71.145-100.48 117.653-23.247 46.507-34.873 96.483-34.873 149.93 0 45.812 8.673 89.027 26.03 129.632 17.352 40.605 41.124 76.003 71.317 106.198 30.2 30.2 65.599 54.145 106.204 71.846 40.607 17.697 83.814 26.549 129.631 26.549 45.811 0 89.02-8.852 129.626-26.549 40.606-17.701 76.01-41.647 106.203-71.846 30.195-30.195 54.14-65.593 71.841-106.198 17.702-40.607 26.549-83.82 26.549-129.631 0-54.14-12.49-105.334-37.478-153.577-24.994-48.24-60.048-87.977-105.162-119.213-15.272-10.412-24.468-24.643-27.592-42.69-3.125-18.049.518-34.709 10.93-49.983 10.412-14.575 24.643-23.427 42.69-26.547 18.047-3.12 34.698.519 49.97 10.93zM534.57 527.888c-18.05 0-33.495-6.421-46.337-19.264-12.841-12.841-19.263-28.287-19.263-46.335V66.635c0-18.048 6.42-33.666 19.263-46.854C501.076 6.593 516.521 0 534.571 0c18.738 0 34.53 6.593 47.371 19.781 12.842 13.188 19.263 28.806 19.263 46.854v395.654c0 18.047-6.42 33.493-19.263 46.335-12.842 12.843-28.633 19.264-47.371 19.264z"/></svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
-        <section id="scripts" layout:fragment="scripts"></section>
+            <div class="content-area-wrapper">
+                <div class="topbar-wrapper">
+                    <a href="javascript:void(0);" class="toggle-sidebar">
+                        <svg height="100%" width="100%" viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 10h24a2 2 0 0 0 0-4H4a2 2 0 0 0 0 4zm24 4H4a2 2 0 0 0 0 4h24a2 2 0 0 0 0-4zm0 8H4a2 2 0 0 0 0 4h24a2 2 0 0 0 0-4z"/>
+                        </svg>
+                    </a>
+                    <div class="user-wrapper">Username</div>
+                </div>
+                <section id="content" layout:fragment="content"></section>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script
+                src="https://code.jquery.com/jquery-3.4.1.js"
+                integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+                crossorigin="anonymous"></script>
+        <script>
+     // $(".sidebar-content-wrapper").each(function(){
+        //   if ($(this).children().length == 0) {
+        //      $(this).addClass('has-subnav');
+        //   }
+        // })
 
+        $( "li.has-subnav a").click(function(e) {
+            $(this).parent().toggleClass("open");
+        });
+
+
+        $( ".toggle-sidebar").click(function(e) {
+            $(".sidebar-wrapper").toggleClass("open");
+        });
+
+        $( ".toggle-sidebar").click(function(e) {
+            if (!$(".sidebar-wrapper").hasClass("open")) {
+                $(".has-subnav").removeClass("open");
+            }
+            else {
+                //$(".has-subnav").addClass("open");
+            }
+        });
+ </script>
     </body>
 
 </html>
