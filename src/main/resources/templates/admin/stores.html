@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:inkscape=""
+      layout:decorate="~{layout/main-auth}" lang="en">
+
+<body>
+<section class="mt-5" layout:fragment="content">
+    <ul>
+        <li th:each="store : ${stores}">
+<!--            kjo th:text mbush ate pjesen brenda me text-->
+            <a th:text="${store.name}" th:href="@{~/stores/open/__${store.id}__}">
+            </a>
+        </li>
+    </ul>
+</section>
+</body>
+</html>

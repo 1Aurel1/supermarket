@@ -9,8 +9,4 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy
 public class AOPConfig {
 
-    @Bean
-    public SessionAttributeAspect sessionAttributeAspect(){
-        return new SessionAttributeAspect();
-    }
 }

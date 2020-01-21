@@ -1,32 +1,22 @@
 package al.cit.supermarket.service.dto.notification;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class NotificationDTO {
 
 
-    private NotificationType type;
+    private String type;
     private String message;
 
     public NotificationDTO() {
     }
 
-    public NotificationDTO(NotificationType type, String message) {
+    public NotificationDTO(String type, String message) {
         this.type = type;
         this.message = message;
     }
 
-    public NotificationType getType() {
-        return type;
-    }
-
-    public void setType(NotificationType type) {
-        this.type = type;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }

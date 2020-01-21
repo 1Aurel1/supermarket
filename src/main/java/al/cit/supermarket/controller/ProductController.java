@@ -1,15 +1,19 @@
 package al.cit.supermarket.controller;
 
 import al.cit.supermarket.service.ProductService;
+import al.cit.supermarket.service.dto.NewProductDTO;
 import al.cit.supermarket.service.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
-@Controller("/products")
+@Controller
+@RequestMapping("/products")
 public class ProductController {
 
     private ProductService productService;
@@ -20,15 +24,16 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping
-    public String getProducts(
-            Model model
-        ){
-
-        List<ProductDTO> products = productService.getStoreProducts();
-        model.addAttribute("products", products);
-        return "/products/index";
-    }
+//    @GetMapping
+//    public String getProducts(
+//            Model model
+//        ){
+//
+//        List<ProductDTO> products = productService.getStoreProducts();
+//        model.addAttribute("products", products);
+//
+//        return "/products/index";
+//    }
 
     @GetMapping("/{id}")
     public String getProduct(
@@ -39,16 +44,28 @@ public class ProductController {
         return "products/show";
     }
 
-    @PostMapping
-    public String postProduct(@ModelAttribute("newProduct") ProductDTO product){
+    @PostMapping("")
+    public String postProduct(
+            @Valid @ModelAttribute("newProduct") NewProductDTO product,
+            BindingResult bindingResult,
+            Model model
+            ){
+
+
+        if (bindingResult.hasErrors()) {
+
+            model.addAttribute("formErrors", bindingResult.getAllErrors());
+            return "/admin/products";
+        }
 
         int id = productService.createProduct(product);
         return String.format("redirect:/products/%d", id);
     }
 
-    @PutMapping
+    @PutMapping("")
     public String putProduct(
-            @ModelAttribute("newProduct") ProductDTO updatedProduct
+            @Valid @ModelAttribute("newProduct") ProductDTO updatedProduct,
+            BindingResult bindingResult
             ){
 
         int id = productService.updateProduct(updatedProduct);
