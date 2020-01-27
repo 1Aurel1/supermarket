@@ -59,7 +59,7 @@ public class ProductController {
         }
 
         int id = productService.createProduct(product);
-        return String.format("redirect:/products/%d", id);
+        return "redirect:/admin/products";
     }
 
     @PutMapping("")
