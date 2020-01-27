@@ -8,7 +8,6 @@ import java.util.Set;
 
 @Data
 @Entity
-@EqualsAndHashCode(callSuper = true)
 public class Store extends AbstractAuditingEntity {
 
     @Id
@@ -16,6 +15,8 @@ public class Store extends AbstractAuditingEntity {
     private int id;
 
     private String name;
+
+    private String description;
 
     private String location;
 

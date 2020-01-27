@@ -23,8 +23,22 @@ public class StoreWithProductsDTO {
         this.location = store.getLocation();
 
         this.products = new ArrayList<>();
+//        for (Product product:
+//                store.getProducts()) {
+//
+//            this.products.add(new ProductDTO(product));
+//        }
+
+    }
+    public StoreWithProductsDTO(Store store, List<Product> products){
+
+        this.id = store.getId();
+        this.name = store.getName();
+        this.location = store.getLocation();
+
+        this.products = new ArrayList<>();
         for (Product product:
-                store.getProducts()) {
+                products) {
 
             this.products.add(new ProductDTO(product));
         }

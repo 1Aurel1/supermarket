@@ -1,27 +1,347 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title layout:fragment="title">Hello - Test</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width-device-width, initial scale=1">
+
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="assets/img/favicon.ico">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+	<title>DEA SUPERMARKET</title>
+
+
+  <link rel="stylesheet" th:href="@{~/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+ <!--FONTAWESOME ICONS -->
+
+	<link href="assets/css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" th:href="@{~/resources/custom.css}">
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
 </head>
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="position: fixed;">
+    <div class="container">
+      <a class="navbar-brand" href="#">Start Bootstrap</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+                  <span class="sr-only">(current)</span>
+                </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <!-- Slide One - Set the background image for this slide in the line below -->
+      <div class="carousel-item active" th:style="'background-image: url(' +@{~/resources/img/farmers.jpg} + ')'">
+        <div class="carousel-caption d-none d-md-block">
+          <h2 class="display-4">Quality</h2>
+          <p class="lead">Best Products in Town!</p>
+        </div>
+      </div>
+      <!-- Slide Two - Set the background image for this slide in the line below -->
+      <div class="carousel-item" th:style="'background-image: url('+ @{~/resources/img/people.jpg} + ')'">
+        <div class="carousel-caption d-none d-md-block">
+          <h2 class="display-4">Professionalism</h2>
+          <p class="lead">Best Service!</p>
+        </div>
+      </div>
+      <!-- Slide Three - Set the background image for this slide in the line below -->
+      <div class="carousel-item" th:style="'background-image: url(' + @{~/resources/img/idiot.jpg} + ')'">
+        <div class="carousel-caption d-none d-md-block">
+          <h2 class="display-4">Kush do te behet milioner?</h2>
+          <p class="lead">Po Jo Po Jo</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+  </div>
+
+</header>
 <body>
 
-<!--Content-->
-<section class="mt-5" layout:fragment="content">
 
-    <h1>Hello World Xhava</h1>
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
+
+
+<section id="supermarkets">
+
+  <div th:each="store : ${stores}">
+
+    <h1><a href="#" th:text="${store.name}">Store name</a></h1>
+    <div class="carousel"
+         data-flickity='{ "lazyLoad": false }'>
+
+      <div th:each="product : ${store.products}" class="carousel-cell">
+        <img class="carousel-cell-image"
+             th:data-flickity-lazyload="${product.image_url}" alt="tulip" th:src="${product.image_url}"/>
+      </div>
+    </div>
+
+  </div>
+
+<!--  <h1><a href="post.html">Supermarket1</a></h1>-->
+
+<!--  &lt;!&ndash; Flickity HTML init &ndash;&gt;-->
+
+<!--  <div class="carousel"-->
+<!--     data-flickity='{ "lazyLoad": true }'>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="assets/img/supermarket.jpg" alt="tulip" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/grapes.jpg" alt="grapes" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/raspberries.jpg" alt="raspberries" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/wolf.jpg" alt="wolf" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/shore.jpg" alt="sea" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/leaf-droplets.jpg" alt="leaf droplets" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/gulls.jpg" alt="gulls" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/touch-screen.jpg" alt="touch screen" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/van.jpg" alt="van" />-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  -->
+<!--  -->
+<!--  <h1>Supermarket1</h1>-->
+
+<!--  &lt;!&ndash; Flickity HTML init &ndash;&gt;-->
+
+<!--  <div class="carousel"-->
+<!--     data-flickity='{ "lazyLoad": true }'>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg" alt="tulip" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/grapes.jpg" alt="grapes" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/raspberries.jpg" alt="raspberries" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/wolf.jpg" alt="wolf" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/shore.jpg" alt="sea" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/leaf-droplets.jpg" alt="leaf droplets" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/gulls.jpg" alt="gulls" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/touch-screen.jpg" alt="touch screen" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/van.jpg" alt="van" />-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <h1>Supermarket1</h1>-->
+
+<!--  &lt;!&ndash; Flickity HTML init &ndash;&gt;-->
+
+<!--  <div class="carousel"-->
+<!--     data-flickity='{ "lazyLoad": true }'>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg" alt="tulip" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/grapes.jpg" alt="grapes" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/raspberries.jpg" alt="raspberries" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/wolf.jpg" alt="wolf" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/shore.jpg" alt="sea" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/leaf-droplets.jpg" alt="leaf droplets" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/gulls.jpg" alt="gulls" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/touch-screen.jpg" alt="touch screen" />-->
+<!--    </div>-->
+<!--    <div class="carousel-cell">-->
+<!--      <img class="carousel-cell-image"-->
+<!--        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/van.jpg" alt="van" />-->
+<!--    </div>-->
+<!--  </div>-->
+
 
 </section>
 
-<!--Page specific scripts-->
-<section layout:fragment="scripts">
 
-</section>
+<!--SING UP  =========================== -->
+
+<section id="signup" data-type="background" data-speed="4"> <div class="container">
+  
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      
+<h2>Followwwwww <strong>us?</strong></h2>
+
+<p><a href="#" class="btn btn-lg btn-block btn-success">Yes</a></p>
+    </div><!-- col-->
+
+  </div><!-- row-->
+</div><!-- container-->
+
+	
+
+</section><!--SING UP  -->
+<!--FOOTER  =========================== -->
+
+
+
+<footer>
+	<div class="container">
+   
+
+
+<div class="col-sm-9">
+  <a href="#" target="_blank" class="badge social twitter"><i class="fa fa-twitter"></i></a>
+  <a href="#" target="_blank" class="badge social facebook"><i class="fa fa-facebook"></i></a>
+  <a href="#" target="_blank" class="badge social gplus"><i class="fa fa-google-plus"></i></a>
+</div><!-- col-->
+
+<div class="col-sm-3">
+  
+  <p class="pull-right">&copy; 2020 DEA SUPERMARKET</p>
+</div><!-- col-->
+
+  </div><!-- container-->
+
+</footer><!--footer  -->
+
+
+<!--JAVASCRIPT  =========================== -->
+<script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<script>
+  $(function(){
+    //cashe the window object
+
+    var $window=$(window);
+    //parallax back effect
+
+    $('section[data-type="background"]').each(function(){
+
+
+
+      var $bgobj=$this; //assignung the object
+
+      $(window).scroll(function(){
+
+        //scroll the back at var speed
+
+
+        var ypos= -($window.scrollTop() / $bgobj.data('speed'))
+
+        //put together our final background position
+
+        var coords= '50%' + ypos +'px';
+
+        //move the background
+
+
+        $bgobj.css({backgroundPosition:coords});
+
+      });//end window scroll
+
+
+    });
+
+
+
+  });
+</script>
+<!--typekit fonts-->
+
 
 </body>
 </html>

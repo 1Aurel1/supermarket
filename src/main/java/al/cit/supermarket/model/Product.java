@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Table(
         name = "products"
 )
-@EqualsAndHashCode(callSuper = true)
 public class Product extends AbstractAuditingEntity {
 
     @Id
