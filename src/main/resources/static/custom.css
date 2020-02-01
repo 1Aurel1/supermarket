@@ -420,8 +420,7 @@ button[type="submit"]:hover{
 body { font-family: sans-serif; }
 
 .carousel {
-  background: linen;
-  
+
   
 }
 
@@ -429,7 +428,6 @@ body { font-family: sans-serif; }
   width: 28%;
   height: 200px;
   margin-right: 10px;
-  background:linen;
   border-radius: 5px;
   counter-increment: carousel-cell;
   
@@ -446,7 +444,6 @@ body { font-family: sans-serif; }
   content: counter(carousel-cell);
   line-height: 200px;
   font-size: 80px;
-  color: linen;
 }
 
 /* cell images   ============================== */
@@ -457,6 +454,9 @@ body { font-family: sans-serif; }
 	height: auto;
 	/* set min-width,
 	   allow images to determine cell width */
+	   width: 100%;
+	   background: cover;
+	   background-repeat: none;
 	min-width: 200px;
 	max-width: 100%;
 	margin-right: 0;
@@ -486,4 +486,13 @@ body { font-family: sans-serif; }
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+  }
+
+  .carousel-caption{
+    text-transform: uppercase;
+    font-weight: border;
+  }
+
+  .navbar {
+    background-color: transparent;
   }

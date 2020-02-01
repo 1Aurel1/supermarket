@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 
-	<title>DEA SUPERMARKET</title>
+	<title>DEA</title>
 
 
   <link rel="stylesheet" th:href="@{~/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
@@ -32,7 +32,7 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="position: fixed;">
     <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
+      <a class="navbar-brand" href="#">Dea</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -65,24 +65,24 @@
     </ol>
     <div class="carousel-inner" role="listbox">
       <!-- Slide One - Set the background image for this slide in the line below -->
-      <div class="carousel-item active" th:style="'background-image: url(' +@{~/resources/img/farmers.jpg} + ')'">
+      <div class="carousel-item active" th:style="'background-image: url(' +@{~/resources/img/opa-greek-street-food.jpg} + ')'">
         <div class="carousel-caption d-none d-md-block">
           <h2 class="display-4">Quality</h2>
           <p class="lead">Best Products in Town!</p>
         </div>
       </div>
       <!-- Slide Two - Set the background image for this slide in the line below -->
-      <div class="carousel-item" th:style="'background-image: url('+ @{~/resources/img/people.jpg} + ')'">
+      <div class="carousel-item" th:style="'background-image: url('+ @{~/resources/img/1.jpg} + ')'">
         <div class="carousel-caption d-none d-md-block">
           <h2 class="display-4">Professionalism</h2>
           <p class="lead">Best Service!</p>
         </div>
       </div>
       <!-- Slide Three - Set the background image for this slide in the line below -->
-      <div class="carousel-item" th:style="'background-image: url(' + @{~/resources/img/idiot.jpg} + ')'">
+      <div class="carousel-item" th:style="'background-image: url(' + @{~/resources/img/20191112-201328-largejpg.jpg} + ')'">
         <div class="carousel-caption d-none d-md-block">
-          <h2 class="display-4">Kush do te behet milioner?</h2>
-          <p class="lead">Po Jo Po Jo</p>
+          <h2 class="display-4">Come and join us</h2>
+          <p class="lead">We are here for you</p>
         </div>
       </div>
     </div>
@@ -108,12 +108,13 @@
 
     <h1><a href="#" th:text="${store.name}">Store name</a></h1>
     <div class="carousel"
-         data-flickity='{ "lazyLoad": false }'>
+         data-flickity='{ "lazyLoad": false, "groupCells": true, "autoPlay": 4000  }'>
 
       <div th:each="product : ${store.products}" class="carousel-cell">
         <img class="carousel-cell-image"
              th:data-flickity-lazyload="${product.image_url}" alt="tulip" th:src="${product.image_url}"/>
       </div>
+
     </div>
 
   </div>
@@ -259,10 +260,10 @@
 
 <section id="signup" data-type="background" data-speed="4"> <div class="container">
   
-  <div class="row">
+  <div class="row" style="justify-contant-center">
     <div class="col-sm-6 col-sm-offset-3">
       
-<h2>Followwwwww <strong>us?</strong></h2>
+<h2 style="color: black;">Followwwwww <strong>us?</strong></h2>
 
 <p><a href="#" class="btn btn-lg btn-block btn-success">Yes</a></p>
     </div><!-- col-->
