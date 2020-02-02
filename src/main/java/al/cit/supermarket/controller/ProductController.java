@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -62,6 +63,14 @@ public class ProductController {
         return "redirect:/admin/products";
     }
 
+    @PostMapping(value = "/bulk/upload", consumes = {"multipart/form-data"})
+    public String postBulkUpload(@RequestParam(name = "file") MultipartFile file){
+
+        productService.createProducts(file);
+
+        return "redirect:/admin/products";
+    }
+
     @PutMapping("")
     public String putProduct(
             @Valid @ModelAttribute("newProduct") ProductDTO updatedProduct,
@@ -70,5 +79,14 @@ public class ProductController {
 
         int id = productService.updateProduct(updatedProduct);
         return String.format("redirect:/products/%d", id);
+    }
+
+
+    @PostMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable("id") int id){
+
+        productService.deleteProduct(id);
+
+        return "redirect:/admin/products";
     }
 }
