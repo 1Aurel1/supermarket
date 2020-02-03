@@ -514,3 +514,15 @@ hr.divider {
 .text-white-50 {
   color: rgba(255, 255, 255, 0.5) !important;
 }
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.d-block {
+  display: block !important;
+}
