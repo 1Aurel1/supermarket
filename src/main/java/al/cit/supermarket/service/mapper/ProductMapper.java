@@ -62,13 +62,16 @@ public class ProductMapper {
         product.setDescription(dto.getDescription());
         product.setPrice(dto.getPrice());
 
-        ImageFile image = new ImageFile();
-        image.setName(dto.getImage().getName());
-        image.setUploadContentType(dto.getImage().getContentType());
-        image.setUploadFileSize(dto.getImage().getSize()+"");
-        image.setURL(cloudinaryService.uploadFile(dto.getImage()));
+        if (dto.getImage() != null){
 
-        product.setImage(image);
+            ImageFile image = new ImageFile();
+            image.setName(dto.getImage().getName());
+            image.setUploadContentType(dto.getImage().getContentType());
+            image.setUploadFileSize(dto.getImage().getSize()+"");
+            image.setURL(cloudinaryService.uploadFile(dto.getImage()));
+
+            product.setImage(image);
+        }
         product.setStore(storeRepository.getOne(mySessionAttributes.getStore().getId()));
 
         return product;

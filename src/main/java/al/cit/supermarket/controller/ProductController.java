@@ -56,29 +56,30 @@ public class ProductController {
         if (bindingResult.hasErrors()) {
 
             model.addAttribute("formErrors", bindingResult.getAllErrors());
-            return "/admin/products";
+            return "redirect:/admin/products";
         }
 
         int id = productService.createProduct(product);
         return "redirect:/admin/products";
     }
 
+
     @PostMapping(value = "/bulk/upload", consumes = {"multipart/form-data"})
-    public String postBulkUpload(@RequestParam(name = "file") MultipartFile file){
+    public String postBulkUpload(@RequestParam(name = "file") MultipartFile file) {
 
         productService.createProducts(file);
 
         return "redirect:/admin/products";
     }
 
-    @PutMapping("")
+    @PostMapping("/update/{id}")
     public String putProduct(
             @Valid @ModelAttribute("newProduct") ProductDTO updatedProduct,
             BindingResult bindingResult
             ){
 
         int id = productService.updateProduct(updatedProduct);
-        return String.format("redirect:/products/%d", id);
+        return "redirect:/admin/products";
     }
 
 

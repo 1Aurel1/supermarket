@@ -19,8 +19,8 @@ public abstract class File extends AbstractAuditingEntity {
     private String name;
 
     @Column(nullable = false)
-
     private String URL;
+
     @Column(nullable = false)
     private String uploadContentType;
 
