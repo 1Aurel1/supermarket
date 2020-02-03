@@ -105,7 +105,7 @@ img{
 	text-align: center;
 	line-height: 32px;
 	margin: 0 5px 20px 0;
-	padding: 0;
+	padding-top: 7px;
 	-webkit-border-radius: 50px;
 	-moz-border-radius:50px;
 	border-radius: 50px;
@@ -250,7 +250,7 @@ footer{
     color: white;
     padding: 20px 0 10px;
     font-size: 12px;
-
+height: 115px;
 
 }
 
@@ -496,3 +496,21 @@ body { font-family: sans-serif; }
   .navbar {
     background-color: transparent;
   }
+
+.page-section {
+  padding: 8rem 0;
+}
+
+.text-white {
+  color: #fff !important;
+}
+
+hr.divider {
+  max-width: 3.25rem;
+  border-width: 0.2rem;
+  border-color: #f4623a;
+}
+
+.text-white-50 {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
