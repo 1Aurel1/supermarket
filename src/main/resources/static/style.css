@@ -15,10 +15,16 @@ body {
   padding: 20px;
 }
 .page {
-  background: #e2e2e5;
   display: flex;
   flex-direction: column;
   height: calc(100% - 40px);
+  position: absolute;
+  place-content: center;
+  width: calc(100% - 40px);
+}
+.page-register {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   place-content: center;
   width: calc(100% - 40px);
@@ -75,6 +81,14 @@ body {
   color: #F1F1F2;
   position: relative;
   width: 50%;
+}
+.right-register {
+  background: #474A59;
+  box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
+  color: #F1F1F2;
+  position: relative;
+  width: 50%;
+  height: 500px;
 }
 @media (max-width: 767px) {
   .right {
@@ -134,4 +148,5 @@ input::-moz-focus-inner {
 .register-link a{
   text-decoration: none;
   color: #2D2F36;
+  margin-left: 51px;
 }
