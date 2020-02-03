@@ -1,6 +1,7 @@
 package al.cit.supermarket.service;
 
 import al.cit.supermarket.model.Product;
+import al.cit.supermarket.model.file.ImageFile;
 import al.cit.supermarket.util.CSVImporter;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class ProductCSVImporter extends CSVImporter<Product> {
         super();
 
         // Setting allowed columns
-        setAllowedColumns(4);
+        setAllowedColumns(5);
     }
 
     @Override
@@ -23,6 +24,13 @@ public class ProductCSVImporter extends CSVImporter<Product> {
         product.setDescription(strings[1]);
         product.setPrice(Double.parseDouble(strings[2]));
         product.setQuantity(Integer.parseInt(strings[3]));
+
+        ImageFile file = new ImageFile();
+        file.setName("NO_Name");
+        file.setUploadContentType("Not_Specified");
+        file.setURL(strings[4]);
+
+        product.setImage(file);
 
         return product;
     }

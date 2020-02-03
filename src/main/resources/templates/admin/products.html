@@ -19,15 +19,11 @@
 
                 <input type="submit" class="btn btn-primary" value="Upload products">
             </form>
-
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveProductModal">
-                Add a new Product
-            </button>
         </div>
 
 
 
-        <!-- Modalssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
+        <!-- Modal -->
         <!-- Modal Save-->
         <form  th:action="@{~/products}" th:object="${newProduct}" method="post" enctype="multipart/form-data">
             <div class="modal fade" id="saveProductModal" tabindex="-1" role="dialog" aria-labelledby="saveProductModalTitle" aria-hidden="true">
@@ -64,7 +60,6 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-auto">
-                                        <label class="sr-only" for="inlineFormInputGroup">Price</label>
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">$</div>
@@ -74,7 +69,6 @@
                                     </div>
 
                                     <div class="col-auto">
-                                        <label class="sr-only" for="inlineFormInputGroup">Price</label>
                                         <div class="input-group mb-2">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">Cope</div>
@@ -85,7 +79,6 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col">
-                                        <label for="exampleFormControlFile1">Photo Input</label>
                                         <input th:field="*{image}" type="file" class="form-control-file" >
                                     </div>
                                 </div>
@@ -100,69 +93,6 @@
             </div>
             </div>
         </form>
-
-
-
-        <!-- Modal Edit-->
-        <div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-labelledby="editProductModal" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editProductrModal">Edit Product</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col">
-                                    <label >Product name</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col">
-                                    <label>Description</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" col="10"></textarea>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col">
-                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                                        <option selected>Kategoria</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-auto">
-                                    <label class="sr-only" for="inlineFormInputGroup">Price</label>
-                                    <div class="input-group mb-2">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">$</div>
-                                        </div>
-                                        <input type="text" class="form-control" id="inlineFormInputGroup">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col">
-                                    <label for="exampleFormControlFile1">Photo Input (If you don't wnat to change the photo leave it.)</label>
-                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-warning">Save Changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <table class="table table-striped">
             <thead>
@@ -188,16 +118,100 @@
                 <td th:text="${product.quantity != null ? product.quantity : 0}"></td>
 
                 <td>
-                    <form th:action="@{~/products/delete/__${product.id}__}" method="post">
-
+                    <form th:action="@{~/products/delete/__${product.id}__}" method="POST">
                         <input type="submit" class="btn btn-danger" value="Delete"/>
-
                     </form>
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editProductModal">Edit</button></td>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" th:attr="data-target='#editProductModal'+${product.id}">Edit</button>
+
+                    <!-- Modal Edit-->
+                    <div class="modal fade" th:id="'editProductModal' + ${product.id}" tabindex="-1" role="dialog" aria-labelledby="editProductModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editProductrModal">Edit Product</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form th:action="@{~/products/update/__${product.id}__}" th:method="PUT">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label>
+                                                    Product name
+                                                    <input name="name" type="text" class="form-control" th:value="${product.name}">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col">
+                                                <label>
+                                                    Description
+                                                    <textarea name="description" th:value="${product.description}" class="form-control" rows="3" col="10"></textarea>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col">
+                                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                                                    <option selected>Kategoria</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-auto">
+                                                 <div class="input-group mb-2">
+                                                     <label>
+                                                         Price in $
+                                                         <input name="price" type="text" th:value="${product.price}" class="form-control">
+                                                     </label>
+                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-auto">
+                                                <div class="input-group mb-2">
+                                                    <label>
+                                                        Quantity
+                                                        <input name="price" type="text" th:value="${product.quantity}" class="form-control">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col">
+                                                <i>Photo Input (If you don't wnat to change the photo leave it.)</i>
+                                                <input name="image" type="file" class="form-control-file">
+                                            </div>
+                                        </div>
+                                        <input type="submit" class="d-none" th:id="'update'+${product.id}" >
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-warning" th:onclick="'submitUpdateForm('+ ${product.id} +');'">Save Changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </td>
+
+                <script>
+                    function submitUpdateForm(id){
+
+                        document.getElementById('update' + id).click();
+                    }
+
+                </script>
             </tr>
             </tbody>
         </table>
 
+    </div>
     </div>
 </section>
 </body>
