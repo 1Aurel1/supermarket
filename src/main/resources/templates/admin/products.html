@@ -11,7 +11,19 @@
                 Add a new Product
             </button>
         </div>
+        <div class="inline">
 
+            <form th:action="@{~/products/bulk/upload}" method="post" enctype="multipart/form-data">
+
+                <input name="file" id="file" type="file">
+
+                <input type="submit" class="btn btn-primary" value="Upload products">
+            </form>
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#saveProductModal">
+                Add a new Product
+            </button>
+        </div>
 
 
 
@@ -152,27 +164,6 @@
             </div>
         </div>
 
-        <!--Delete Modal -->
-        <div class="modal fade" id="deleteProductCenter" tabindex="-1" role="dialog" aria-labelledby="deleteProductCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteProductCenterTitle">Delete</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure you want to delete this Product ???
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <table class="table table-striped">
             <thead>
             <tr>
@@ -188,20 +179,25 @@
             </thead>
             <tbody>
             <tr th:if="${product != null}" th:each="product : ${products}">
-                <th scope="row">1</th>
+                <th scope="row"></th>
                 <td><img th:src="${product.image_url != null ? product.image_url : '#'}" width="50px" height="50px"></td>
                 <td th:text="${product.name != null ? product.name : ''}"></td>
                 <td th:text="${product.description != null ? product.description : ''}"></td>
                 <td>Kategoria</td>
                 <td th:text="${product.price != null ? product.price : 0.0}"></td>
                 <td th:text="${product.quantity != null ? product.quantity : 0}"></td>
-                <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteProductCenter">Delete</button>
+
+                <td>
+                    <form th:action="@{~/products/delete/__${product.id}__}" method="post">
+
+                        <input type="submit" class="btn btn-danger" value="Delete"/>
+
+                    </form>
                     <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editProductModal">Edit</button></td>
             </tr>
             </tbody>
         </table>
 
-    </div>
     </div>
 </section>
 </body>

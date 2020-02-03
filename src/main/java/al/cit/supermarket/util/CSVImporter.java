@@ -15,7 +15,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
-public abstract class CSVImporter<Object, Response> {
+public abstract class CSVImporter<Object> {
 
     // List to contain the objects from csv
     private List<Object> objects;
@@ -23,23 +23,12 @@ public abstract class CSVImporter<Object, Response> {
     private List<Object> listToCompare;
 
     private MessageSource messageSource;
-    // List to contain generated messages
-    private List<Response> msgs;
-
     // Variables for reading the file
     private String cvsSplitBy;
     private int lineNr;
     private int allowedColumns;
 
     private boolean ignoreDuplications;
-
-    // For user messages
-    private StringBuilder parsingErrorMsgs;
-    private StringBuilder lineErrorMsgs;
-    private StringBuilder duplicationInDBErrorMsgs;
-    private StringBuilder duplicationInCSVErrorMsgs;
-    private String bufferReaderError;
-    private String fileFormatError;
 
     private int parsingErrorCount;
     private int lineErrorCount;
@@ -52,20 +41,12 @@ public abstract class CSVImporter<Object, Response> {
     public CSVImporter() {
 
         this.objects = new ArrayList<>();
-        this.msgs = new ArrayList<>();
 
         this.cvsSplitBy = ",";
         this.lineNr = 0;
         this.allowedColumns = 0;
 
         this.ignoreDuplications = false;
-
-        this.parsingErrorMsgs = new StringBuilder();
-        this.lineErrorMsgs = new StringBuilder();
-        this.duplicationInDBErrorMsgs = new StringBuilder();
-        this.duplicationInCSVErrorMsgs = new StringBuilder();
-        this.fileFormatError = "";
-        this.bufferReaderError = "";
 
         this.parsingErrorCount = 0;
         this.lineErrorCount = 0;
@@ -96,8 +77,6 @@ public abstract class CSVImporter<Object, Response> {
                 }
 
                 // In case of a line error or parsing error the 'hasError' boolean will be set to true
-                if (this.lineErrorMsgs.length() != 0 || this.parsingErrorMsgs.length() != 0)
-                    this.hasError = true;
 
                 // Setting the user response
                 responseConfiguration();
@@ -105,7 +84,6 @@ public abstract class CSVImporter<Object, Response> {
             } catch (IOException e) {
 
                 // handle file input exception
-                this.bufferReaderError = this.messageSource.getMessage("import.response.error.default", null, LocaleContextHolder.getLocale());
             } finally {
 
                 if (br != null) {
@@ -128,7 +106,6 @@ public abstract class CSVImporter<Object, Response> {
         if (!(Objects.equals(type, "text/csv") || Objects.equals(type, "application/vnd.ms-excel"))) {
 
             // Notifying that the format is not correct
-            this.fileFormatError = this.messageSource.getMessage("import.response.error.fileFormat", new String[]{type}, LocaleContextHolder.getLocale());
 
             return false;
         }
@@ -152,21 +129,21 @@ public abstract class CSVImporter<Object, Response> {
                 object = mapStringToObject(c);
 
                 // Check if city if duplicated in the csv
-                if (!this.ignoreDuplications)
-                    isInList = isDuplicate(this.objects, object, this.duplicationInCSVErrorMsgs, "import.response.error.duplicationInCSV");
+//                if (!this.ignoreDuplications)
+//                    isInList = isDuplicate(this.objects, object, this.duplicationInCSVErrorMsgs, "import.response.error.duplicationInCSV");
+//
+//                if (isInList)
+//                    this.duplicationInCSVErrorCount++;
 
-                if (isInList)
-                    this.duplicationInCSVErrorCount++;
-
-                // Check if city already exists in db
-                if (!this.listToCompare.isEmpty() && !isInList)
-                    isInDB = isDuplicate(this.listToCompare, object, this.duplicationInDBErrorMsgs, "import.response.error.duplicationInDB");
-
-                if (isInDB)
-                    this.duplicationInDBErrorCount++;
+//                // Check if city already exists in db
+//                if (!this.listToCompare.isEmpty() && !isInList)
+//                    isInDB = isDuplicate(this.listToCompare, object, this.duplicationInDBErrorMsgs, "import.response.error.duplicationInDB");
+//
+//                if (isInDB)
+//                    this.duplicationInDBErrorCount++;
 
                 // Forbid the object from being added to the objects list in case it is duplication in csv or in db
-                if (!(isInList || isInDB))
+//                if (!(isInList || isInDB))
                     this.objects.add(object);
 
             } catch (NumberFormatException e) {
@@ -174,7 +151,6 @@ public abstract class CSVImporter<Object, Response> {
                 // If a number format happens during Float parsing the object will not be added to the objects list
                 // Handel float parsing Exceptions
                 this.parsingErrorCount++;
-                this.parsingErrorMsgs.append(this.messageSource.getMessage("import.response.error.parsingErrorMsg", new String[]{Integer.toString(this.lineNr), e.getMessage().replace("\"", "'")}, LocaleContextHolder.getLocale()));
             }
 
         } else {
@@ -182,7 +158,6 @@ public abstract class CSVImporter<Object, Response> {
             // If a line error happens during Float parsing the object will not be added to the objects list
             // Handel the line errors
             this.lineErrorCount++;
-            this.lineErrorMsgs.append(this.messageSource.getMessage("import.response.error.lineErrorMsg", new String[]{Integer.toString(this.lineNr), Integer.toString(c.length)}, LocaleContextHolder.getLocale()));
         }
     }
 
