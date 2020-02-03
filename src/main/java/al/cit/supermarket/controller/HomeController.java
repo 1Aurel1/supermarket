@@ -23,4 +23,22 @@ public class HomeController {
         model.addAttribute("stores", homeService.getStoresAndProducts());
         return "index";
     }
+
+    @GetMapping("/services")
+    public String getServicesPage(){
+
+        return "Services";
+    }
+
+    @GetMapping("/contact-us")
+    public String getContactPage(){
+
+        return "Contact-us";
+    }
+
+    @GetMapping("/about-us")
+    public String getAboutPage(){
+
+        return "index";
+    }
 }

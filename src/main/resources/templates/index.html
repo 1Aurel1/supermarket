@@ -45,21 +45,21 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/">Home
+            <a class="nav-link" th:href="@{~/}">Home
                   <span class="sr-only">(current)</span>
                 </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" th:href="@{~/about}">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" th:href="@{~/services}">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" th:href="@{~/contact}">Contact</a>
           </li>
           <li class="nav-item">
-            <a style="border: solid 1px black; width: 86px; text-align: center;" class="nav-link" href="#">Login</a>
+            <a style="border: solid 1px black; width: 86px; text-align: center;" class="nav-link" th:href="@{~/login}">Login</a>
           </li>
         </ul>
       </div>
