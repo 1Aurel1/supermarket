@@ -20,6 +20,9 @@ public class SuccessfulAuthenticationHandler implements AuthenticationSuccessHan
     @Autowired
     private ServletContext servletContext;
 
+    @Autowired
+    private MySessionAttributes sessionAttributes;
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
