@@ -15,6 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
 public class MySessionAttributes {
 
     private StoreDTO store;
+    private String username;
 
     public void setStore(StoreDTO store) {
 
@@ -28,6 +29,14 @@ public class MySessionAttributes {
 
     public StoreDTO getStore() {
         return store;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override

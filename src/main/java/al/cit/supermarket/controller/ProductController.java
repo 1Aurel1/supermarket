@@ -25,6 +25,8 @@ public class ProductController {
         this.productService = productService;
     }
 
+
+
 //    @GetMapping
 //    public String getProducts(
 //            Model model
@@ -42,7 +44,7 @@ public class ProductController {
             Model model){
 
         model.addAttribute("product", productService.getStoreProduct(id));
-        return "products/show";
+        return "show-product";
     }
 
     @PostMapping("")

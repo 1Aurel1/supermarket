@@ -1,4 +1,4 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:security="http://www.springframework.org/security/tags">
 
     <head>
 
@@ -19,7 +19,7 @@
                 <div class="sidebar-content-wrapper">
                     <div class="account-wrapper">
                         <div class="account-logo-wrapper">
-                            <img  th:src="@{~/resources/purple-store-design-color-geometric-260nw-1130146721.webp}">
+                            <img th:src="@{~/resources/purple-store-design-color-geometric-260nw-1130146721.webp}">
                         </div>
                         <div class="account-name-wrapper" th:text="${session.selectedStore != null} ? ${session.selectedStore.name}" >
 
@@ -123,7 +123,7 @@
                             <path d="M4 10h24a2 2 0 0 0 0-4H4a2 2 0 0 0 0 4zm24 4H4a2 2 0 0 0 0 4h24a2 2 0 0 0 0-4zm0 8H4a2 2 0 0 0 0 4h24a2 2 0 0 0 0-4z"/>
                         </svg>
                     </a>
-                    <div class="user-wrapper">Username</div>
+                    <div class="user-wrapper" ><security:authentication property="principal.username" /></div>
                 </div>
                 <section id="content" layout:fragment="content"></section>
             </div>
