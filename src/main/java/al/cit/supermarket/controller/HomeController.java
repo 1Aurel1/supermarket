@@ -39,6 +39,6 @@ public class HomeController {
     @GetMapping("/about-us")
     public String getAboutPage(){
 
-        return "index";
+        return "about-us";
     }
 }
