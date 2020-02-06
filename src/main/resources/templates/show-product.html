@@ -1,3 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width-device-width, initial scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="assets/img/favicon.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    <title>DEA</title>
+
+    <!-- Font Awesome Icons -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{~/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+    <!--FONTAWESOME ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" th:href="@{~/resources/custom.css}">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+</head>
+
+
 <style>
 
     /* 12columns.css | Created by Katherine Kato | Released under the MIT license */
@@ -799,7 +837,7 @@
             display: block;
         }
         .product-image img {
-            height: 52vh;
+            height: 80vh;
         }
         .product-image img.active {
             display: block;
@@ -894,22 +932,32 @@
     productImages.forEach(image => image.addEventListener("click", changeImage));
     navItem.addEventListener('click', toggleNavigation);
 </script>
-
-<nav class="flex-nav">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="position: fixed;">
     <div class="container">
-        <div class="grid menu">
-            <div class="column-xs-8 column-md-6">
-                <p id="highlight">ShopShop</p>
-            </div>
-            <div class="column-xs-4 column-md-6">
-                <a href="#" class="toggle-nav">Menu <i class="ion-navicon-round"></i></a>
-                <ul>
-                    <li class="nav-item"><a href="#">Products</a></li>
-                    <li class="nav-item"><a href="#">About</a></li>
-                    <li class="nav-item"><a href="#">My Account</a></li>
-                    <li class="nav-item"><a href="#">Cart (0)</a></li>
-                </ul>
-            </div>
+        <a class="navbar-brand" href="#">Dea</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{~/}">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{~/about-us}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{~/services}">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{~/contact-us}">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a style="border: solid 1px black; width: 86px; text-align: center;" class="nav-link" th:href="@{~/login}">Login</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -930,21 +978,16 @@
             <div class="column-xs-12 column-md-7">
                 <div class="product-gallery">
                     <div class="product-image">
-                        <img class="active" src="https://source.unsplash.com/W1yjvf5idqA">
+                        <img class="active" th:src="${product.getImage_url()}">
                     </div>
-                    <ul class="image-list">
-                        <li class="image-item"><img src="https://source.unsplash.com/W1yjvf5idqA"></li>
-                        <li class="image-item"><img src="https://source.unsplash.com/VgbUxvW3gS4"></li>
-                        <li class="image-item"><img src="https://source.unsplash.com/5WbYFH0kf_8"></li>
-                    </ul>
+
                 </div>
             </div>
             <div class="column-xs-12 column-md-5">
-                <h1>Bonsai</h1>
-                <h2>$19.99</h2>
+                <h1 th:text="${product.name}">Product Name</h1>
+                <h2>$<i th:text="${product.price}"></i></h2>
                 <div class="description">
-                    <p>The purposes of bonsai are primarily contemplation for the viewer, and the pleasant exercise of effort and ingenuity for the grower.</p>
-                    <p>By contrast with other plant cultivation practices, bonsai is not intended for production of food or for medicine. Instead, bonsai practice focuses on long-term cultivation and shaping of one or more small trees growing in a container.</p>
+                    <p th:text="${product.description}">By contrast with other plant cultivation practices, bonsai is not intended for production of food or for medicine. Instead, bonsai practice focuses on long-term cultivation and shaping of one or more small trees growing in a container.</p>
                 </div>
                 <button class="add-to-cart">Add To Cart</button>
             </div>

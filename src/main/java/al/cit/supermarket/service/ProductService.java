@@ -48,6 +48,13 @@ public class ProductService {
         return products;
     }
 
+    public ProductDTO getProduct(int id) {
+
+        Product product = productRepository.getOne(id);
+
+        return new ProductDTO(product);
+    }
+
     public ProductDTO getStoreProduct(int id) {
 
         int storeId = sessionAttributes.getStore().getId();

@@ -119,9 +119,10 @@
     <div class="carousel"
          data-flickity='{ "lazyLoad": false, "groupCells": true, "autoPlay": 4000  }'>
 
-      <div th:each="product : ${store.products}" class="carousel-cell">
+      <div th:each="product : ${store.products}" class="carousel-cell" style="position: relative;">
         <img class="carousel-cell-image"
              th:data-flickity-lazyload="${product.image_url}" alt="tulip" th:src="${product.image_url}"/>
+        <a th:href="@{~/products/__${product.id}__}" th:text="${product.name}" class="page-link" style="position: absolute; bottom: 0; left: 0;"></a>
       </div>
 
     </div>

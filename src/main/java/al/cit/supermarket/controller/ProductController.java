@@ -43,7 +43,7 @@ public class ProductController {
             @PathVariable("id") int id,
             Model model){
 
-        model.addAttribute("product", productService.getStoreProduct(id));
+        model.addAttribute("product", productService.getProduct(id));
         return "show-product";
     }
 
